@@ -1,4 +1,5 @@
 import os
+from heapq import nlargest
 
 def func():
     d,ctr = {}, 0
@@ -14,8 +15,9 @@ def func():
             d[str(ctr)]+=int(line)
         else:
             d[str(ctr)]=int(line)
-    return max(d.values())
-
+    max_lst = nlargest(3,d,key=d.get)
+    return sum(d[item] for item in max_lst)
+        
 def main():
     print(func())
 
